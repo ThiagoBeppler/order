@@ -1,12 +1,12 @@
 package com.example.order.models;
 
 import com.example.order.entities.Produto;
-import lombok.Getter;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Data
 public class PedidoDTO {
     private List<Produto> produtos = new ArrayList<>();
 
