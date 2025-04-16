@@ -28,7 +28,7 @@ public class PedidoController {
     }
 
     @GetMapping("/id/{id}")
-    public Optional<Pedido> getProcessedOrders(@RequestHeader("id") Long id) {
+    public Optional<Pedido> getProcessedOrders(@PathVariable("id") Long id) {
         return pedidoService.buscarPedidoPorId(id);
     }
 
