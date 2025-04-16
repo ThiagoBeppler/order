@@ -5,11 +5,13 @@ import com.example.order.models.PedidoDTO;
 import com.example.order.repository.PedidoRepository;
 import com.example.order.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PedidoServiceImpl implements PedidoService {
 
     @Autowired
