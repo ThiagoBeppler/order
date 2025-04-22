@@ -1,6 +1,7 @@
 package com.example.order.service.Impl;
 
 import com.example.order.entities.Pedido;
+import com.example.order.entities.Produto;
 import com.example.order.models.PedidoDTO;
 import com.example.order.repository.PedidoRepository;
 import com.example.order.service.PedidoService;
@@ -20,11 +21,16 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Pedido criarPedido(PedidoDTO pedidoDTO) {
 
+        Double total = pedidoDTO.getProdutos()
+                .stream()
+                .mapToDouble(Produto::getPreco)
+                .sum();
+
         Pedido pedido = new Pedido(
             null,
             LocalDateTime.now(),
             pedidoDTO.getProdutos(),
-            pedidoDTO.getTotal(),
+            total,
             "PROCESSADO"
         );
 

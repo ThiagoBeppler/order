@@ -3,10 +3,11 @@ package com.example.order.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
 import lombok.Getter;
 
 @Entity
-@Getter
+@Data
 public class Produto {
     @Id
     @GeneratedValue

@@ -10,8 +10,6 @@ import java.util.List;
 public class PedidoDTO {
     private List<Produto> produtos = new ArrayList<>();
 
-    private Double total;
-
     private String status;
 
 }
