@@ -10,6 +10,8 @@ import java.util.List;
 public class PedidoDTO {
     private List<Produto> produtos = new ArrayList<>();
 
+    private String comprador;
+
     private String status;
 
 }

@@ -20,6 +20,8 @@ public class Pedido {
     @GeneratedValue
     private Long id;
 
+    private String comprador;
+
     private LocalDateTime dataHora;
 
     @OneToMany(cascade = CascadeType.ALL)

@@ -12,4 +12,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
     Pedido save(Pedido pedido);
     List<Pedido> findByStatus(String status);
     Optional<Pedido> findById(Long id);
+    Optional<Pedido> findTopByCompradorAndStatusOrderByDataHoraDesc(String comprador, String status);
+
 }

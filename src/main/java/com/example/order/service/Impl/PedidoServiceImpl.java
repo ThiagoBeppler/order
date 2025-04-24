@@ -26,8 +26,11 @@ public class PedidoServiceImpl implements PedidoService {
                 .mapToDouble(Produto::getPreco)
                 .sum();
 
+        validarDuplicidadeSequencial(total, pedidoDTO.getComprador());
+
         Pedido pedido = new Pedido(
             null,
+            pedidoDTO.getComprador(),
             LocalDateTime.now(),
             pedidoDTO.getProdutos(),
             total,
@@ -45,5 +48,25 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> buscarPedidoPorId(Long id) {
         return pedidoRepository.findById(id);
+    }
+
+    public void validarDuplicidadeSequencial(Double total, String comprador) {
+        Optional<Pedido> ultimoPedido = pedidoRepository.findTopByCompradorAndStatusOrderByDataHoraDesc(comprador, "PROCESSADO");
+
+        if (ultimoPedido.isPresent() && ultimoPedido.get().getTotal().equals(total)) {
+
+            Pedido pedido = new Pedido(
+                    null,
+                    comprador,
+                    LocalDateTime.now(),
+                    null,
+                    total,
+                    "RECUSADO"
+            );
+
+            pedidoRepository.save(pedido);
+
+            throw new IllegalArgumentException("Pedido recusado, você não pode fazer dois pedidos de mesmo valor sequencialmente, pedidoId: " + pedido.getId());
+        }
     }
 }
